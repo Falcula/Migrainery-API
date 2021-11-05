@@ -19,6 +19,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public Optional<User> getUser(Long id) {
+        return userRepository.findById(id);
+    }
+
     public void addNewUser(User user){
 
        Optional<User> userOptional = userRepository.
@@ -29,7 +33,17 @@ public class UserService {
        else {
            userRepository.save(user);
        }
-
     }
+
+    public void deleteUser(Long id) {
+        if(userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+        }
+        else {
+            throw new IllegalStateException("User with id" + id + "does not exist");
+        }
+    }
+
+
 
 }
