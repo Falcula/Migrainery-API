@@ -1,5 +1,6 @@
 package com.example.Migrainery.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,9 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    @RequestMapping(path="api/user", method = RequestMethod.GET)
+
+    private final UserService userService;
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @RequestMapping(path="api/v1/user", method = RequestMethod.GET)
     public User getUser(){
-        return new User(1L,"Falcula","Jesper", "Kramming","jesper.kramming@outlook.com");
+        return userService.getUser();
 
     }
 }

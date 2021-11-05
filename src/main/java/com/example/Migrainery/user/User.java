@@ -1,5 +1,9 @@
 package com.example.Migrainery.user;
 
+
+import javax.persistence.Entity;
+
+@Entity
 public class User {
     private Long Id;
     private String userName;
