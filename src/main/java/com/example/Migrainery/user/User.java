@@ -1,22 +1,40 @@
 package com.example.Migrainery.user;
 
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+
 
 @Entity
+@Table(name = "Users")
 public class User {
+    @Id
+    @SequenceGenerator(
+            name="user_sequence",
+            sequenceName="user_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
     private Long Id;
     private String userName;
     private String firstName;
     private String lastName;
     private String email;
 
-    public User(Long id, String userName, String firstName, String lastName, String email) {
-        Id = id;
+    @Transient
+    private String fullName;
+
+    public User(String userName, String firstName, String lastName, String email) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public User() {
+
     }
 
     public Long getId() {
@@ -58,4 +76,10 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
+
 }

@@ -1,9 +1,9 @@
 package com.example.Migrainery.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -15,9 +15,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(path="api/v1/user", method = RequestMethod.GET)
-    public User getUser(){
-        return userService.getUser();
+    @GetMapping(path="api/v1/users")
+    public List<User> getUsers(){
+        return userService.getUsers();
+    }
 
+    @PostMapping(path="api/v1/user")
+    public void newUser(@RequestBody User user){
+        userService.addNewUser(user);
     }
 }
