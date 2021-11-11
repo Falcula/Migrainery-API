@@ -1,7 +1,7 @@
 package com.example.Migrainery;
 
 import com.example.Migrainery.authentication.JWTFilter;
-import com.example.Migrainery.services.MyUserDetailsService;
+import com.example.Migrainery.authentication.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Configuration
 @EnableWebSecurity
@@ -46,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
            http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/authenticate").permitAll()
+                .antMatchers("/api/v1/authenticate","/api/v1/register").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

@@ -1,19 +1,21 @@
-package com.example.Migrainery;
-import com.example.Migrainery.authentication.JWTRequest;
-import com.example.Migrainery.authentication.JWTResponse;
-import com.example.Migrainery.services.MyUserDetailsService;
+package com.example.Migrainery.authentication.controllers;
+import com.example.Migrainery.authentication.models.JWTRequest;
+import com.example.Migrainery.authentication.models.JWTResponse;
+import com.example.Migrainery.authentication.services.MyUserDetailsService;
 import com.example.Migrainery.utils.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 @RequestMapping("api/v1")
-
-public class HomeController {
+@RestController
+public class Authenticate {
 
     @Autowired
     private MyUserDetailsService myUserDetailsService;
@@ -23,12 +25,6 @@ public class HomeController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
-
-
-    @GetMapping("/")
-    public String home(){
-        return "Hi there";
-    }
 
     @PostMapping("/authenticate")
     public JWTResponse authenticate (@RequestBody JWTRequest jwtRequest) throws Exception {
@@ -51,6 +47,5 @@ public class HomeController {
 
         return new JWTResponse(token);
     }
-
 
 }

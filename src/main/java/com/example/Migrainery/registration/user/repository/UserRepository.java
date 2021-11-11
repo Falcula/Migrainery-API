@@ -1,4 +1,5 @@
-package com.example.Migrainery.user;
+package com.example.Migrainery.registration.user.repository;
+import com.example.Migrainery.registration.user.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

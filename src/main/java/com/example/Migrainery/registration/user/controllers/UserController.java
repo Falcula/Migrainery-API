@@ -1,9 +1,10 @@
-package com.example.Migrainery.user;
+package com.example.Migrainery.registration.user.controllers;
 
+import com.example.Migrainery.registration.user.models.User;
+import com.example.Migrainery.registration.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,12 +33,6 @@ public class UserController {
             return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
-
-
-    @PostMapping("/user")
-    public void postUser(@Validated @RequestBody User user){
-        userService.addNewUser(user);
     }
 
     @DeleteMapping("/user/{id}")

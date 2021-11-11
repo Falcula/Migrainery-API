@@ -1,4 +1,4 @@
-package com.example.Migrainery.registration;
+package com.example.Migrainery.registration.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,4 +17,6 @@ public class UserRegistration {
     private String email;
     @NotBlank(message = "Password can not be empty")
     private String password;
+    private String firstname;
+    private String lastname;
 }

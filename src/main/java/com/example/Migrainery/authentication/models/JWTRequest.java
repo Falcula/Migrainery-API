@@ -1,4 +1,4 @@
-package com.example.Migrainery.authentication;
+package com.example.Migrainery.authentication.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

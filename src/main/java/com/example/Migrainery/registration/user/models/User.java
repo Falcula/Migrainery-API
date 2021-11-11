@@ -1,22 +1,16 @@
-package com.example.Migrainery.user;
-
-
+package com.example.Migrainery.registration.user.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
-
-
 @Entity
 @Table(name = "Users")
-
-
 public class User {
+
     @Id
     @SequenceGenerator(
             name="user_sequence",
@@ -29,14 +23,13 @@ public class User {
     )
     private Long Id;
 
-    private String userName;
-
     private String firstName;
 
     private String lastName;
 
     private String email;
 
+    @JsonIgnore
     private String password;
 
     @Transient
@@ -46,8 +39,7 @@ public class User {
         return this.firstName + " " + this.lastName;
     }
 
-    public User(String userName, String firstName, String lastName, String email, String password) {
-        this.userName = userName;
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

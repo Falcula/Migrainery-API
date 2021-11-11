@@ -1,5 +1,7 @@
-package com.example.Migrainery.user;
+package com.example.Migrainery.registration.user.services;
 
+import com.example.Migrainery.registration.user.models.User;
+import com.example.Migrainery.registration.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -33,6 +35,9 @@ public class UserService {
        else {
            userRepository.save(user);
        }
+    }
+    public Optional<User> getUserByEmail(String email) {
+          return userRepository.findUserByEmail(email);
     }
 
     public void deleteUser(Long id) {
