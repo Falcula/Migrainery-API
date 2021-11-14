@@ -1,7 +1,7 @@
-package com.example.Migrainery.authentication.controllers;
-import com.example.Migrainery.authentication.models.JWTRequest;
-import com.example.Migrainery.authentication.models.JWTResponse;
-import com.example.Migrainery.authentication.services.MyUserDetailsService;
+package com.example.Migrainery.controllers;
+import com.example.Migrainery.models.JWTRequestModel;
+import com.example.Migrainery.models.JWTResponseModel;
+import com.example.Migrainery.services.MyUserDetailsService;
 import com.example.Migrainery.utils.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("api/v1")
 @RestController
-public class Authenticate {
+public class AuthenticateController {
 
     @Autowired
     private MyUserDetailsService myUserDetailsService;
@@ -27,13 +27,13 @@ public class Authenticate {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/authenticate")
-    public JWTResponse authenticate (@RequestBody JWTRequest jwtRequest) throws Exception {
+    public JWTResponseModel authenticate (@RequestBody JWTRequestModel jwtRequestModel) throws Exception {
 
         try{
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            jwtRequest.getUsername(),
-                            jwtRequest.getPassword()
+                            jwtRequestModel.getUsername(),
+                            jwtRequestModel.getPassword()
                     )
             );
         } catch(BadCredentialsException e) {
@@ -41,11 +41,11 @@ public class Authenticate {
         }
 
         final UserDetails userDetails =
-                myUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
+                myUserDetailsService.loadUserByUsername(jwtRequestModel.getUsername());
 
         final String token = jwtUtility.generateToken(userDetails);
 
-        return new JWTResponse(token);
+        return new JWTResponseModel(token);
     }
 
 }

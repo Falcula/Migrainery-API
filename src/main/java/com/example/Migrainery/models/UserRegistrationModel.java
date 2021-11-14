@@ -1,4 +1,4 @@
-package com.example.Migrainery.registration.models;
+package com.example.Migrainery.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @AllArgsConstructor
 @ToString
-public class UserRegistration {
+public class UserRegistrationModel {
     @Email(message="Email is in wrong format")
     private String email;
     @NotBlank(message = "Password can not be empty")

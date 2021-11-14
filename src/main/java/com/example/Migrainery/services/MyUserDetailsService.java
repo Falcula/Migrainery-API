@@ -1,4 +1,4 @@
-package com.example.Migrainery.authentication.services;
+package com.example.Migrainery.services;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

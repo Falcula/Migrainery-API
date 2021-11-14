@@ -1,7 +1,7 @@
-package com.example.Migrainery.registration.user.controllers;
+package com.example.Migrainery.controllers;
 
-import com.example.Migrainery.registration.user.models.User;
-import com.example.Migrainery.registration.user.services.UserService;
+import com.example.Migrainery.models.UserModel;
+import com.example.Migrainery.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +21,13 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers(){
+    public ResponseEntity<List<UserModel>> getUsers(){
         return new ResponseEntity<>(userService.getUsers(),HttpStatus.OK);
     }
 
     @GetMapping("user/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
-        Optional<User> userOptional = userService.getUser(id);
+    public ResponseEntity<UserModel> getUserById(@PathVariable("id") Long id) {
+        Optional<UserModel> userOptional = userService.getUser(id);
 
         if(userOptional.isPresent()) {
             return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);

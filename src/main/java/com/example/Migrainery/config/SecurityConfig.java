@@ -1,7 +1,7 @@
-package com.example.Migrainery;
+package com.example.Migrainery.config;
 
-import com.example.Migrainery.authentication.JWTFilter;
-import com.example.Migrainery.authentication.services.MyUserDetailsService;
+import com.example.Migrainery.utils.JWTFilter;
+import com.example.Migrainery.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

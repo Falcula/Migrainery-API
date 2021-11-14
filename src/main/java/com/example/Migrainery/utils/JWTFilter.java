@@ -1,6 +1,6 @@
-package com.example.Migrainery.authentication;
+package com.example.Migrainery.utils;
 
-import com.example.Migrainery.authentication.services.MyUserDetailsService;
+import com.example.Migrainery.services.MyUserDetailsService;
 import com.example.Migrainery.utils.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

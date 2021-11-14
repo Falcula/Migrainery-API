@@ -1,4 +1,4 @@
-package com.example.Migrainery.registration.user.models;
+package com.example.Migrainery.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
@@ -7,9 +7,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name = "Users")
-public class User {
+@Entity(name="UserModel")
+@Table(name = "Users", uniqueConstraints = {
+        @UniqueConstraint(name="user_email_unique", columnNames = "email")
+})
+public class UserModel {
 
     @Id
     @SequenceGenerator(
@@ -21,14 +23,20 @@ public class User {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
+
+    @Column(name="id",nullable = false)
     private Long Id;
 
+    @Column(name="first_name",nullable = false)
     private String firstName;
 
+    @Column(name="last_name",nullable = false)
     private String lastName;
 
+    @Column(name="email",nullable = false)
     private String email;
 
+    @Column(name="password",nullable = false)
     @JsonIgnore
     private String password;
 
@@ -39,7 +47,7 @@ public class User {
         return this.firstName + " " + this.lastName;
     }
 
-    public User(String firstName, String lastName, String email, String password) {
+    public UserModel(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
