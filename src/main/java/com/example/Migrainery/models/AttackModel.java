@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Getter
@@ -21,15 +22,17 @@ public class AttackModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
-
-    @Column(name="id",nullable = false)
-    private Long id;
+    private Long Id;
 
     @Column(name="level",nullable = false)
     private int level;
 
     @Column(name="timestamp",nullable = false)
     private Date timestamp;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private UserModel user;
 
 }
  

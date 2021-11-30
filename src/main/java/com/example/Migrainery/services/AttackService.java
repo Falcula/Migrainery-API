@@ -5,7 +5,7 @@ import com.example.Migrainery.repository.AttackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AttackService {
@@ -18,8 +18,12 @@ public class AttackService {
         this.attackRepository = attackRepository;
     }
 
-    public List<AttackModel> getAttacks(){
-        return attackRepository.findAll();
+    public AttackModel[] getAttacksForUserId(Long userId){
+        return attackRepository.findAttacksByUserId(userId);
+    }
+
+    public AttackModel saveAttack(AttackModel attackModel) {
+        return attackRepository.save(attackModel);
     }
 
 }

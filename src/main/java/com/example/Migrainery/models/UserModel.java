@@ -2,6 +2,9 @@ package com.example.Migrainery.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -23,8 +26,6 @@ public class UserModel {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
-
-    @Column(name="id",nullable = false)
     private Long Id;
 
     @Column(name="first_name",nullable = false)
@@ -39,6 +40,7 @@ public class UserModel {
     @Column(name="password",nullable = false)
     @JsonIgnore
     private String password;
+
 
     @Transient
     private String fullName;
