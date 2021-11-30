@@ -1,12 +1,10 @@
 package com.example.Migrainery.controllers;
-
 import com.example.Migrainery.models.UserModel;
 import com.example.Migrainery.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
