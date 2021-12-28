@@ -29,7 +29,9 @@ public class AuthenticateController {
     @PostMapping("/authenticate")
     public JWTResponseModel authenticate (@RequestBody JWTRequestModel jwtRequestModel) throws Exception {
 
+
         try{
+            System.out.println("test");
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             jwtRequestModel.getUsername(),
@@ -37,6 +39,7 @@ public class AuthenticateController {
                     )
             );
         } catch(BadCredentialsException e) {
+            System.out.println("test");
             throw new Exception("Invalid credentials", e);
         }
 
